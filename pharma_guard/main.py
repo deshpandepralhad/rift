@@ -159,7 +159,9 @@ def normalize_phenotype_code(phenotype: Optional[str]) -> str:
     }
     return phenotype_map.get(normalized, "Unknown")
 
-@app.get("/", methods=["GET", "HEAD"])
+# To this:
+@app.get("/")
+@app.head("/")
 async def root():
     return {
         "service": "PharmaGuard API",
