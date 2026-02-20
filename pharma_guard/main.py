@@ -17,7 +17,7 @@ if not is_llm_configured():
     print("WARNING: LLM API key not configured. Set OPENAI_API_KEY. Falling back to rule engine/explanation fallback.")
 origins = [
     "http://localhost:3000",
-    "https://pharma-ui.vercel.app", # Replace with your actual Vercel project name later
+    "https://rift-exsjbgmog-deshpandepralhads-projects.vercel.app/", # Replace with your actual Vercel project name later
     "*" # Keep this for the demo day to avoid any last-minute CORS blocks
 ]
 # Configure CORS
@@ -159,16 +159,13 @@ def normalize_phenotype_code(phenotype: Optional[str]) -> str:
     }
     return phenotype_map.get(normalized, "Unknown")
 
-@app.get("/")
+@app.get("/", methods=["GET", "HEAD"])
 async def root():
     return {
         "service": "PharmaGuard API",
         "version": "2.0",
         "status": "operational",
-        "llm_api_key_configured": is_llm_configured(),
-        "supported_drugs": list(DRUG_GENE_MAP.keys()),
-        "supported_genes": list(set([v["gene"] for v in TARGET_VARIANTS.values()])),
-        "cpic_guidelines": CPIC_GUIDELINES
+        "llm_api_key_configured": is_llm_configured()
     }
 
 @app.get("/health")
