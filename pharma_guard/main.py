@@ -15,7 +15,11 @@ app = FastAPI(title="PharmaGuard API", description="Pharmacogenomic Risk Predict
 
 if not is_llm_configured():
     print("WARNING: LLM API key not configured. Set OPENAI_API_KEY. Falling back to rule engine/explanation fallback.")
-
+origins = [
+    "http://localhost:3000",
+    "https://pharma-ui.vercel.app", # Replace with your actual Vercel project name later
+    "*" # Keep this for the demo day to avoid any last-minute CORS blocks
+]
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
