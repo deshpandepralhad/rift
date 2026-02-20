@@ -23,7 +23,7 @@ origins = [
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"], # This ensures ANY Vercel preview link can talk to the backend
     allow_methods=["*"],
     allow_headers=["*"],
     allow_credentials=True,
