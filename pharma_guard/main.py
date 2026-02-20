@@ -26,7 +26,7 @@ app.add_middleware(
     allow_origins=["*"], # This ensures ANY Vercel preview link can talk to the backend
     allow_methods=["*"],
     allow_headers=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
 )
 
 # Ensure upload directory exists
